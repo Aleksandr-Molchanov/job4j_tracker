@@ -27,14 +27,17 @@ public class Point {
         return sqrt(pow(this.x - that.x, 2) + pow(this.y - that.y, 2) + pow(this.z - that.z, 2));
     }
 
-    public void info() {
-        System.out.println("Point[" + this.x + ", " + this.y + "]");
-    }
-
     public static void main(String[] args) {
         Point a = new Point(0, 0);
         Point b = new Point(0, 2);
-        double dist = a.distance(b);
-        System.out.println(dist);
+        double dist1 = a.distance(b);
+        Point c = new Point(0, 0, 0);
+        Point d = new Point(0, 2, 0);
+        Point f = new Point(4, 0, 0);
+        double dist2 = c.distance3d(d);
+        double dist3 = c.distance3d(f);
+        System.out.println(dist1);
+        System.out.println(dist2);
+        System.out.println(dist3);
     }
 }
