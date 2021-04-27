@@ -9,6 +9,6 @@ public class Engineer extends Profession {
     }
 
     public Work execution (Project project) {
-
+        return new Work();
     }
 }
