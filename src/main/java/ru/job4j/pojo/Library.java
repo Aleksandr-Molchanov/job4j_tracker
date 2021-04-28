@@ -11,21 +11,18 @@ public class Library {
         book[1] = book2;
         book[2] = book3;
         book[3] = book4;
-        for (int index = 0; index < book.length; index++) {
-            Book bk = book[index];
+        for (Book bk: book) {
             System.out.println("In the book " + bk.getName() + " " + bk.getCount() + " pages");
         }
         System.out.println();
         Book temp = book[0];
         book[0] = book[3];
         book[3] = temp;
-        for (int index = 0; index < book.length; index++) {
-            Book bk = book[index];
+        for (Book bk: book) {
             System.out.println("In the book " + bk.getName() + " " + bk.getCount() + " pages");
         }
         System.out.println();
-        for (int index = 0; index < book.length; index++) {
-            Book bk = book[index];
+        for (Book bk: book) {
             if (bk.getName().equals("Clean code")) {
                 System.out.println("In the book " + bk.getName() + " " + bk.getCount() + " pages");
             }
