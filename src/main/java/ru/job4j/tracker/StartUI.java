@@ -38,9 +38,9 @@ public class StartUI {
                 }
             } else if (select == 4) {
                 int id = Integer.parseInt(scanner.nextLine());
-                boolean rsl = tracker.findById(id) != null;
+                Item item = tracker.findById(id);
+                boolean rsl = item != null;
                 if (rsl) {
-                    Item item = tracker.findById(id);
                     System.out.println(item);
                 } else {
                     System.out.println("Заявка с таким id не найдена");
