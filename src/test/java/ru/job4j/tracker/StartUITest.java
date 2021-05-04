@@ -9,11 +9,16 @@ public class StartUITest {
     public void whenCreateItem() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"0", "Item name", "1"}
+                new String[] {"0", "Item name", "6"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(out),
+                new ShowAction(out),
+                new ReplaceAction(out),
+                new DeleteAction(out),
+                new FindByIdAction(out),
+                new FindByNameAction(out),
                 new Exit(out)
         };
         new StartUI(out).init(in, tracker, actions);
@@ -25,19 +30,23 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Item name"));
-        String itemToString = "Item{id=1, name='Item name', created=" + item.getCreated() + '}';
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.getId())}
+                new String[] {"1", "6"}
         );
         UserAction[] actions = {
+                new CreateAction(out),
                 new ShowAction(out),
+                new ReplaceAction(out),
+                new DeleteAction(out),
+                new FindByIdAction(out),
+                new FindByNameAction(out),
                 new Exit(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator() +
                         "=== Show all items ====" + System.lineSeparator() +
-                        itemToString + System.lineSeparator() +
+                        item.toString() + System.lineSeparator() +
                         "Menu." + System.lineSeparator() +
                         "0. Exit" + System.lineSeparator()
         ));
@@ -50,10 +59,15 @@ public class StartUITest {
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
+                new String[] {"2", String.valueOf(item.getId()), replacedName, "6"}
         );
         UserAction[] actions = {
+                new CreateAction(out),
+                new ShowAction(out),
                 new ReplaceAction(out),
+                new DeleteAction(out),
+                new FindByIdAction(out),
+                new FindByNameAction(out),
                 new Exit(out)
         };
         new StartUI(out).init(in, tracker, actions);
@@ -66,10 +80,15 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Deleted item"));
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.getId()), "1"}
+                new String[] {"3", String.valueOf(item.getId()), "6"}
         );
         UserAction[] actions = {
+                new CreateAction(out),
+                new ShowAction(out),
+                new ReplaceAction(out),
                 new DeleteAction(out),
+                new FindByIdAction(out),
+                new FindByNameAction(out),
                 new Exit(out)
         };
         new StartUI(out).init(in, tracker, actions);
@@ -81,19 +100,23 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Item name"));
-        String itemToString = "Item{id=1, name='Item name', created=" + item.getCreated() + '}';
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.getId()), "1"}
+                new String[] {"4", String.valueOf(item.getId()), "6"}
         );
         UserAction[] actions = {
+                new CreateAction(out),
+                new ShowAction(out),
+                new ReplaceAction(out),
+                new DeleteAction(out),
                 new FindByIdAction(out),
+                new FindByNameAction(out),
                 new Exit(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator() +
                         "=== Find item by id ====" + System.lineSeparator() +
-                        itemToString + System.lineSeparator() +
+                        item.toString() + System.lineSeparator() +
                         "Menu." + System.lineSeparator() +
                         "0. Exit" + System.lineSeparator()
         ));
@@ -104,11 +127,15 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Item name"));
-        String itemToString = "Item{id=1, name='Item name', created=" + item.getCreated() + '}';
         Input in = new StubInput(
-                new String[] {"0", "Item name", "1"}
+                new String[] {"5", item.getName(), "6"}
         );
         UserAction[] actions = {
+                new CreateAction(out),
+                new ShowAction(out),
+                new ReplaceAction(out),
+                new DeleteAction(out),
+                new FindByIdAction(out),
                 new FindByNameAction(out),
                 new Exit(out)
         };
@@ -116,7 +143,7 @@ public class StartUITest {
         assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator() +
                         "=== Find items by name ====" + System.lineSeparator() +
-                        itemToString + System.lineSeparator() +
+                        item.toString() + System.lineSeparator() +
                         "Menu." + System.lineSeparator() +
                         "0. Exit" + System.lineSeparator()
         ));
@@ -126,10 +153,16 @@ public class StartUITest {
     public void whenExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"0"}
+                new String[] {"6"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
+                new CreateAction(out),
+                new ShowAction(out),
+                new ReplaceAction(out),
+                new DeleteAction(out),
+                new FindByIdAction(out),
+                new FindByNameAction(out),
                 new Exit(out)
         };
         new StartUI(out).init(in, tracker, actions);
