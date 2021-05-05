@@ -9,6 +9,9 @@ public class FindEl {
                 break;
             }
         }
+        if (rsl == -1) {
+            throw new ElementAbuseException();
+        }
         return rsl;
     }
 
