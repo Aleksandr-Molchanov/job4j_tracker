@@ -18,7 +18,7 @@ public class FindEl {
     public static void main(String[] args) {
         try {
             String[] value = new String[] {"a", "b", "c"};
-            int index = indexOf(value, "a");
+            int index = indexOf(value, "asdf");
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
