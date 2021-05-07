@@ -11,14 +11,14 @@ public class UserStore {
             }
         }
         if (rsl == null) {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException("Пользователь не найден.");
         }
         return rsl;
     }
 
     public static boolean validate(User user) throws UserInvalidException {
         if (!user.isValid() || user.getUsername().length() < 3) {
-            throw new UserInvalidException();
+            throw new UserInvalidException("Пользователь не валидный.");
         }
         return true;
     }
@@ -26,16 +26,16 @@ public class UserStore {
     public static void main(String[] args) {
         try {
             User[] users = {
-                    new User("Petr Arsentev", true)
+                    new User("Petr Arsentev", false)
             };
             User user = findUser(users, "Petr Arsentev");
             if (validate(user)) {
                 System.out.println("This user has an access");
             }
         } catch (UserInvalidException ui) {
-            System.out.println("Пользователь не валидный.");
+            ui.printStackTrace();
         } catch (UserNotFoundException unf) {
-            System.out.println("Пользователь не найден.");
+           unf.printStackTrace();
         }
     }
 }
