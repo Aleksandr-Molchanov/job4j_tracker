@@ -11,7 +11,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", "Item name", "1"}
         );
-        Tracker tracker = new Tracker();
+        SingleTracker tracker = new SingleTracker();
         UserAction[] actions = {
                 new CreateAction(out),
                 new Exit()
@@ -23,7 +23,7 @@ public class StartUITest {
     @Test
     public void whenShowItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        SingleTracker tracker = new SingleTracker();
         Item item = tracker.add(new Item("Item name"));
         Input in = new StubInput(
                 new String[] {"0", "1"}
@@ -49,7 +49,7 @@ public class StartUITest {
     @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        SingleTracker tracker = new SingleTracker();
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input in = new StubInput(
@@ -66,7 +66,7 @@ public class StartUITest {
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        SingleTracker tracker = new SingleTracker();
         Item item = tracker.add(new Item("Deleted item"));
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
@@ -82,7 +82,7 @@ public class StartUITest {
     @Test
     public void whenFindByIdItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        SingleTracker tracker = new SingleTracker();
         Item item = tracker.add(new Item("Item name"));
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
@@ -108,7 +108,7 @@ public class StartUITest {
     @Test
     public void whenFindByNameItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        SingleTracker tracker = new SingleTracker();
         Item item = tracker.add(new Item("Item name"));
         Input in = new StubInput(
                 new String[] {"0", item.getName(), "1"}
@@ -137,7 +137,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0"}
         );
-        Tracker tracker = new Tracker();
+        SingleTracker tracker = new SingleTracker();
         UserAction[] actions = {
                 new Exit()
         };
@@ -154,7 +154,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"25", "0"}
         );
-        Tracker tracker = new Tracker();
+        SingleTracker tracker = new SingleTracker();
         UserAction[] actions = new UserAction[]{
                 new Exit()
         };
