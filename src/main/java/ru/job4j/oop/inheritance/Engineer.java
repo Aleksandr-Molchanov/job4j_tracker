@@ -8,7 +8,7 @@ public class Engineer extends Profession {
         this.completed = completed;
     }
 
-    public Work execution (Project project) {
+    public Work execution(Project project) {
         return new Work();
     }
 }

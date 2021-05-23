@@ -6,6 +6,8 @@ public class College {
         student.setName("Alexander Molchanov");
         student.setGroup("#1");
         student.setDate("1.1.2021");
-        System.out.println("Student " + student.getName() + " joined the group " + student.getGroup() + " " + student.getDate());
+        System.out.println("Student " + student.getName()
+                + " joined the group " + student.getGroup()
+                + " " + student.getDate());
     }
 }

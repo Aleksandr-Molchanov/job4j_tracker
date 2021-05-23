@@ -5,5 +5,5 @@ public interface Transport {
 
     void passengers(int number);
 
-    double fillUp (double liter);
+    double fillUp(double liter);
 }

@@ -11,7 +11,7 @@ public class UniqueText {
         for (String index : origin) {
             check.add(index);
         }
-        for (String index : text){
+        for (String index : text) {
             if (!check.contains(index)) {
                 rsl = false;
                 break;
