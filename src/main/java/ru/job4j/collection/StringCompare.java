@@ -8,13 +8,13 @@ public class StringCompare implements Comparator<String> {
         int rsl = 0;
         int size = Math.min(left.length(), right.length());
         for (int index = 0; index < size; index++) {
-            rsl += Integer.compare(left.charAt(index), right.charAt(index));
+            rsl += Character.compare(left.charAt(index), right.charAt(index));
             if (rsl != 0) {
                 break;
             }
         }
         if (rsl == 0) {
-            rsl += left.length() - right.length();
+            rsl += Integer.compare(left.length(), right.length());
         }
         return rsl;
     }
