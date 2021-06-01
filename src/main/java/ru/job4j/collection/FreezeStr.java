@@ -18,15 +18,13 @@ public class FreezeStr {
         for (Character ch : right.toCharArray()) {
             if (!map.containsKey(ch)) {
                 return false;
+            }
+            else if (map.containsKey(ch) && map.get(ch) == 1) {
+                map.remove(ch);
             } else {
                 map.put(ch, map.get(ch) - 1);
             }
         }
-        for (Integer value : map.values()) {
-            if (value != 0) {
-                return false;
-            }
-        }
-        return true;
+        return map.size() == 0;
     }
 }
