@@ -7,7 +7,7 @@ public class FreezeStr {
         if (left.length() != right.length()) {
             return false;
         }
-        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        Map<Character, Integer> map = new HashMap<>();
         for (Character ch : left.toCharArray()) {
             if (!map.containsKey(ch)) {
                 map.put(ch, 1);
@@ -18,8 +18,7 @@ public class FreezeStr {
         for (Character ch : right.toCharArray()) {
             if (!map.containsKey(ch)) {
                 return false;
-            }
-            else if (map.containsKey(ch) && map.get(ch) == 1) {
+            } else if (map.containsKey(ch) && map.get(ch) == 1) {
                 map.remove(ch);
             } else {
                 map.put(ch, map.get(ch) - 1);

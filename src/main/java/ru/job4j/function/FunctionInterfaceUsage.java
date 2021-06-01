@@ -18,7 +18,7 @@ public class FunctionInterfaceUsage {
         }
 
         Supplier<String> sup2 = () -> "New String For Interface";
-        Consumer<String> consumer = (s) -> System.out.println(s);
+        Consumer<String> consumer = System.out::println;
         consumer.accept(sup2.get());
 
         Supplier<String> sup3 = () -> "New String For Interface";
@@ -34,7 +34,7 @@ public class FunctionInterfaceUsage {
             consumer1.accept(i++, " is " + s);
         }
 
-        Predicate<String> pred = s -> s.isEmpty();
+        Predicate<String> pred = String::isEmpty;
         System.out.println("Строка пустая: " + pred.test(""));
         System.out.println("Строка пустая: " + pred.test("test"));
 
@@ -47,12 +47,14 @@ public class FunctionInterfaceUsage {
         System.out.println("Третий символ в строке: " + func.apply("second"));
 
         BiFunction<String, Integer, String> biFunc = (s, i2) -> s.concat(" ").concat(i2.toString());
-        System.out.println("Результат работы бифункции: " + biFunc.apply("Name" , 123));
-        System.out.println("Результат работы бифункции: " + biFunc.apply("String number" , 12345));
+        System.out.println("Результат работы бифункции: " + biFunc.apply("Name", 123));
+        System.out.println("Результат работы бифункции: " + biFunc.apply("String number", 12345));
 
-        UnaryOperator<StringBuilder> builder = b -> b.reverse();
-        System.out.println("Строка поле реверса: " + builder.apply(new StringBuilder("String for test")));
-        System.out.println("Строка поле реверса: " + builder.apply(new StringBuilder("tset rof gnirtS")));
+        UnaryOperator<StringBuilder> builder = StringBuilder::reverse;
+        System.out.println("Строка поле реверса: "
+                + builder.apply(new StringBuilder("String for test")));
+        System.out.println("Строка поле реверса: "
+                + builder.apply(new StringBuilder("tset rof gnirtS")));
 
         BinaryOperator<StringBuilder> builder1 = (b1, b2) -> b1.append(" ").append(b2);
         System.out.println(
