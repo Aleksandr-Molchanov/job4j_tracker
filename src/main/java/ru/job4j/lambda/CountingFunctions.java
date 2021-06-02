@@ -8,7 +8,7 @@ public class CountingFunctions {
     List<Double> diapason(int start, int end, Function<Double, Double> func) {
         List<Double> rsl = new ArrayList<>();
         for (int index = start; index < end; index++) {
-            rsl.add(func.apply((double)index));
+            rsl.add(func.apply((double) index));
         }
         return rsl;
     }
