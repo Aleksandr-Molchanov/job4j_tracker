@@ -30,7 +30,7 @@ public class ProfilesTest {
     }
 
     @Test
-    public void WhenThereAreDuplicates() {
+    public void whenThereAreDuplicates() {
         Address ruslan = new Address("Moskva", "Lenina", 1, 1);
         Address olga = new Address("Kolomna", "Priborostroiteley", 8, 8);
         Address igor = new Address("Kursk", "Krasnoprudnaya", 10, 10);
