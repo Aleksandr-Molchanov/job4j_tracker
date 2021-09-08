@@ -22,9 +22,14 @@ public class Item implements Comparable<Item> {
         this.name = name;
     }
 
-    public Item(int id, String name) {
+    public Item(int id, String name, LocalDateTime created) {
         this.id = id;
         this.name = name;
+        this.created = created;
+    }
+
+    public static DateTimeFormatter getFORMATTER() {
+        return FORMATTER;
     }
 
     public int getId() {
@@ -45,6 +50,10 @@ public class Item implements Comparable<Item> {
 
     public LocalDateTime getCreated() {
         return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     @Override
@@ -68,11 +77,9 @@ public class Item implements Comparable<Item> {
 
     @Override
     public String toString() {
-        return "Item{"
-                + "id=" + id
-                + ", name='" + name + '\''
-                + ", created=" + created
-                + '}';
+        return String.format(
+                "id: %s, name: %s, created: %s", id, name, FORMATTER.format(created)
+        );
     }
 
     @Override
