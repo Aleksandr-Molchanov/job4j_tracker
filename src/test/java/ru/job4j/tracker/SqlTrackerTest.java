@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -76,6 +78,8 @@ public class SqlTrackerTest {
         tracker.add(item);
         Item newItem = new Item("newItem");
         assertTrue(tracker.replace(item.getId(), newItem));
+        Item expected = tracker.findById(item.getId());
+        assertNotEquals(expected, is(item));
     }
 
     @Test
@@ -97,7 +101,12 @@ public class SqlTrackerTest {
         tracker.add(item2);
         tracker.add(item3);
         List<Item> items = tracker.findAll();
+        List<Item> expected = new ArrayList<>();
+        expected.add(item1);
+        expected.add(item2);
+        expected.add(item3);
         assertEquals(3, items.size());
+        assertThat(expected, is(items));
     }
 
     @Test
@@ -110,7 +119,11 @@ public class SqlTrackerTest {
         tracker.add(item2);
         tracker.add(item3);
         List<Item> items = tracker.findByName("item");
+        List<Item> expected = new ArrayList<>();
+        expected.add(item1);
+        expected.add(item2);
         assertEquals(2, items.size());
+        assertThat(expected, is(items));
     }
 
     @Test
@@ -123,6 +136,8 @@ public class SqlTrackerTest {
         tracker.add(item2);
         tracker.add(item3);
         List<Item> items = tracker.findByName("item5");
+        List<Item> expected = new ArrayList<>();
         assertEquals(0, items.size());
+        assertThat(expected, is(items));
     }
 }
