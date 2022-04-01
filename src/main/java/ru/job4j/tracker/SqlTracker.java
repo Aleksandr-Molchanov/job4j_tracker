@@ -40,10 +40,11 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement =
-                     cn.prepareStatement("insert into items(name, created) values (?, ?)",
+                     cn.prepareStatement("insert into items(name, created, description) values (?, ?, ?)",
                              Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
+            statement.setString(3, item.getDescription());
             statement.execute();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -60,10 +61,11 @@ public class SqlTracker implements Store {
     public boolean replace(int id, Item item) {
         boolean result = false;
         try (PreparedStatement statement =
-                     cn.prepareStatement("update items set name = ?, created = ? where id = ?")) {
+                     cn.prepareStatement("update items set name = ?, created = ?, description = ? where id = ?")) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
-            statement.setInt(3, id);
+            statement.setString(3, item.getDescription());
+            statement.setInt(4, id);
             result = statement.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +96,8 @@ public class SqlTracker implements Store {
                     items.add(new Item(
                             resultSet.getInt("id"),
                             resultSet.getString("name"),
-                            resultSet.getTimestamp("created").toLocalDateTime()
+                            resultSet.getTimestamp("created").toLocalDateTime(),
+                            resultSet.getString("description")
                     ));
                 }
             }
@@ -115,7 +118,8 @@ public class SqlTracker implements Store {
                     items.add(new Item(
                             resultSet.getInt("id"),
                             resultSet.getString("name"),
-                            resultSet.getTimestamp("created").toLocalDateTime()
+                            resultSet.getTimestamp("created").toLocalDateTime(),
+                            resultSet.getString("description")
                     ));
                 }
             }
@@ -136,7 +140,8 @@ public class SqlTracker implements Store {
                     result = new Item(
                             resultSet.getInt("id"),
                             resultSet.getString("name"),
-                            resultSet.getTimestamp("created").toLocalDateTime()
+                            resultSet.getTimestamp("created").toLocalDateTime(),
+                            resultSet.getString("description")
                     );
                 }
             }

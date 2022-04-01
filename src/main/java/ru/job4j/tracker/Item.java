@@ -20,6 +20,8 @@ public class Item implements Comparable<Item> {
 
     private LocalDateTime created = LocalDateTime.now();
 
+    private String description;
+
     public Item() {
     }
 
@@ -32,10 +34,11 @@ public class Item implements Comparable<Item> {
         this.name = name;
     }
 
-    public Item(int id, String name, LocalDateTime created) {
+    public Item(int id, String name, LocalDateTime created, String description) {
         this.id = id;
         this.name = name;
         this.created = created;
+        this.description = description;
     }
 
     public static DateTimeFormatter getFORMATTER() {
@@ -66,6 +69,14 @@ public class Item implements Comparable<Item> {
         this.created = created;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -77,18 +88,19 @@ public class Item implements Comparable<Item> {
         Item item = (Item) o;
         return id == item.id
                 && Objects.equals(name, item.name)
-                && Objects.equals(created.withNano(0), item.created.withNano(0));
+                && Objects.equals(created.withNano(0), item.created.withNano(0))
+                && Objects.equals(description, item.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, created);
+        return Objects.hash(id, name, created, description);
     }
 
     @Override
     public String toString() {
         return String.format(
-                "id: %s, name: %s, created: %s", id, name, FORMATTER.format(created)
+                "id: %s, name: %s, created: %s, description: %s", id, name, FORMATTER.format(created), description
         );
     }
 
