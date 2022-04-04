@@ -6,6 +6,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import javax.persistence.Query;
 import java.util.List;
 
 public class HbmTracker implements Store, AutoCloseable {
@@ -33,21 +34,34 @@ public class HbmTracker implements Store, AutoCloseable {
         item.setId(id);
         Session session = sf.openSession();
         session.beginTransaction();
-        session.update(item);
-        session.save(item);
+        String hql = "update Item i "
+                + " SET i.name = :name, "
+                + " i.created = :created, "
+                + " i.description = :description "
+                + " where i.id = :id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        query.setParameter("name", item.getName());
+        query.setParameter("created", item.getCreated());
+        query.setParameter("description", item.getDescription());
+        int rsl = query.executeUpdate();
         session.getTransaction().commit();
         session.close();
-        return item.equals(findById(id));
+        return rsl != 0;
     }
 
     @Override
     public boolean delete(int id) {
         Session session = sf.openSession();
         session.beginTransaction();
-        session.delete(findById(id));
+        String hql = "delete Item i "
+                + " where i.id = :id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        int rsl = query.executeUpdate();
         session.getTransaction().commit();
         session.close();
-        return true;
+        return rsl != 0;
     }
 
     @Override
