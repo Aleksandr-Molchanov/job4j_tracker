@@ -96,7 +96,7 @@ public class StartUITest {
                 "Menu." + ln
                         + "0. Find item by id" + ln
                         + "1. Exit" + ln
-                        + "=== Find item by id ====" + ln
+                        + "=== Find item by id ===" + ln
                         + item + ln
                         + "Menu." + ln
                         + "0. Find item by id" + ln
@@ -121,7 +121,7 @@ public class StartUITest {
                 "Menu." + ln
                         + "0. Find items by name" + ln
                         + "1. Exit" + ln
-                        + "=== Find items by name ====" + ln
+                        + "=== Find items by name ===" + ln
                         + item + ln
                         + "Menu." + ln
                         + "0. Find items by name" + ln

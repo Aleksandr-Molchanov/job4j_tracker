@@ -14,13 +14,13 @@ public class FindByIdAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store store) {
-        out.println("=== Find item by id ====");
+        out.println("=== Find item by id ===");
         int id = input.askInt("Enter id: ");
         Item item = store.findById(id);
         if (item != null) {
             out.println(item);
         } else {
-            out.println("Заявка с введенным id: " + id + " не найдена.");
+            out.println("Заявка с введенным id не найдена.");
         }
         return true;
     }

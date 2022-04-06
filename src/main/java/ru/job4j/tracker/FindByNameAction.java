@@ -16,7 +16,7 @@ public class FindByNameAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store store) {
-        out.println("=== Find items by name ====");
+        out.println("=== Find items by name ===");
         String name = input.askStr("Enter name: ");
         List<Item> items = store.findByName(name);
         if (items.size() > 0) {
@@ -24,7 +24,7 @@ public class FindByNameAction implements UserAction {
                 out.println(item);
             }
         } else {
-            out.println("Заявки с именем: " + name + " не найдены.");
+            out.println("Заявки не найдены.");
         }
         return true;
     }
