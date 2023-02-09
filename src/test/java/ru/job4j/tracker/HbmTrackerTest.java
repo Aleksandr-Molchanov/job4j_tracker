@@ -77,9 +77,9 @@ public class HbmTrackerTest {
     @Test
     public void findById() {
         HbmTracker tracker = new HbmTracker();
-        Item item1 = new Item(1, "name1", LocalDateTime.now(), "description1");
+        Item item1 = new Item(1, "name1", LocalDateTime.now().withNano(0), "description1");
         tracker.add(item1);
-        Item item2 = new Item(2, "name1", LocalDateTime.now(), "description2");
+        Item item2 = new Item(2, "name1", LocalDateTime.now().withNano(0), "description2");
         tracker.add(item2);
         Item rsl1 =  tracker.findById(1);
         assertThat(rsl1, is(item1));

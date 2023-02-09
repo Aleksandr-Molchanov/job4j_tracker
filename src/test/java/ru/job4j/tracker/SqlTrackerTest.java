@@ -59,6 +59,7 @@ public class SqlTrackerTest {
     public void whenSaveItemAndFindByGeneratedIdThenMustBeTheSame() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
+        item.setCreated(item.getCreated().withNano(0));
         tracker.add(item);
         assertThat(tracker.findById(item.getId()), is(item));
     }
@@ -97,6 +98,9 @@ public class SqlTrackerTest {
         Item item1 = new Item("item1");
         Item item2 = new Item("item2");
         Item item3 = new Item("item3");
+        item1.setCreated(item1.getCreated().withNano(0));
+        item2.setCreated(item2.getCreated().withNano(0));
+        item3.setCreated(item3.getCreated().withNano(0));
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
@@ -115,6 +119,9 @@ public class SqlTrackerTest {
         Item item1 = new Item("item");
         Item item2 = new Item("item");
         Item item3 = new Item("item3");
+        item1.setCreated(item1.getCreated().withNano(0));
+        item2.setCreated(item2.getCreated().withNano(0));
+        item3.setCreated(item3.getCreated().withNano(0));
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
